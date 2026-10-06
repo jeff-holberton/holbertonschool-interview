@@ -15,7 +15,6 @@ def canUnlockAll(boxes):
 		if index in unopened_boxes and (index in keys or index == 0):
 			unopened_boxes.remove(index)
 			openBox(boxes, index, unopened_boxes, keys)
-		print(unopened_boxes)
 	if not unopened_boxes:
 		return True
 	return False
