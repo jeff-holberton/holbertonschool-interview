@@ -13,5 +13,5 @@ def canUnlockAll(boxes):
 			if 0 <= key < n and key not in opened:
 				to_visit.append(key)
 				opened.add(key)
-	
+
 	return len(opened) == n
