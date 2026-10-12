@@ -21,9 +21,6 @@ def minOperations(n):
     while current_n != 1:
         previous_n = current_n
         current_n = findDivisor(current_n)
-        if current_n == 1:
-            paste += previous_n // 1
-        else:
-            copy += 1
-            paste += 1
+        copy += 1
+        paste += (previous_n - current_n) // current_n
     return copy + paste
