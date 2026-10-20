@@ -38,8 +38,8 @@ def main():
                 ip, date, status, size = line_matches.groups()
                 if int(status) in status_codes:
                     status_codes[int(status)] += 1
-                file_size += int(size)
-                lines_read += 1
+                    file_size += int(size)
+                    lines_read += 1
             else:
                 print(f"SKIPPED: {line!r}", file=sys.stderr)
     except KeyboardInterrupt:
