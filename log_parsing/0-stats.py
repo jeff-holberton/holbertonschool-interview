@@ -6,12 +6,12 @@ import re
 import time
 
 
-
 def print_status(status_codes, file_size):
     print(f"File size: {file_size}")
     for key in sorted(status_codes):
         if status_codes[key] != 0:
             print(f"{key}: {status_codes[key]}")
+
 
 def main():
     status_codes = {
@@ -26,8 +26,8 @@ def main():
     }
     file_size = 0
     lines_read = 0
-    pattern = re.compile(r'^\S+ - \[[^\]]*\] "GET /projects/260 HTTP/1\.1" (\S+) (\d+)$')
-
+    pattern = re.compile(r'^\S+ - \[[^\]]*\] '
+                         r'"GET /projects/260 HTTP/1\.1" (\S+) (\d+)$')
     try:
         for line in sys.stdin:
             if lines_read == 10:
@@ -50,8 +50,6 @@ def main():
         time.sleep(1)
         return
     print_status(status_codes, file_size)
-    
-    
 
 
 if __name__ == "__main__":
