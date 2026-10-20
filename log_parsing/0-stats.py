@@ -30,7 +30,6 @@ def main():
 
     try:
         for line in sys.stdin:
-            is_last = (line == "")
             if lines_read == 10:
                 print_status(status_codes, file_size)
                 lines_read = 0
@@ -45,8 +44,7 @@ def main():
         print_status(status_codes, file_size)
         time.sleep(1)
         return
-    if is_last:
-        print_status(status_codes, file_size)
+    print_status(status_codes, file_size)
     
     
 
