@@ -26,7 +26,7 @@ def main():
     }
     file_size = 0
     lines_read = 0
-    pattern = re.compile(r'^(\d{1,3}(?:\.\d{1,3}){3}) - \[([^\]]+)\] "GET /projects/260 HTTP/1\.1" (\d{3}) (\d+)$')
+    pattern = re.compile(r'^\S+ - \[[^\]]*\] "GET /projects/260 HTTP/1\.1" (\S+) (\d+)$')
 
     try:
         for line in sys.stdin:
@@ -34,14 +34,17 @@ def main():
                 print_status(status_codes, file_size)
                 lines_read = 0
             line_matches = pattern.fullmatch(line.rstrip('\n'))
-            if line_matches:
-                ip, date, status, size = line_matches.groups()
-                if int(status) in status_codes:
-                    status_codes[int(status)] += 1
-                    file_size += int(size)
-                    lines_read += 1
-            else:
-                print(f"SKIPPED: {line!r}", file=sys.stderr)
+            if not line_matches:
+                continue
+            status, size = line_matches.groups()
+            try:
+                code = int(status)
+            except ValueError:
+                code = None
+            if code in status_codes:
+                status_codes[int(status)] += 1
+            file_size += int(size)
+            lines_read += 1
     except KeyboardInterrupt:
         print_status(status_codes, file_size)
         time.sleep(1)
