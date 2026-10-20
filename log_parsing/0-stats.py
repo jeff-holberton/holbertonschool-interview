@@ -40,6 +40,8 @@ def main():
                     status_codes[int(status)] += 1
                 file_size += int(size)
                 lines_read += 1
+            else:
+                print(f"SKIPPED: {line!r}", file=sys.stderr)
     except KeyboardInterrupt:
         print_status(status_codes, file_size)
         time.sleep(1)
