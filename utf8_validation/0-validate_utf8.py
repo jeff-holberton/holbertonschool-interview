@@ -1,4 +1,4 @@
-#!/usr/vin/python3
+#!/usr/bin/python3
 """UTF-8 Validation Algorithm"""
 
 
