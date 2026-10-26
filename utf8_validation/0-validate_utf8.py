@@ -6,6 +6,8 @@ def validUTF8(data):
     started = 0
     character_length = 0
     for n in data:
+        if n > 255 or n < 0:
+            return False
         if started == 0:
             binary_str = f"{n:08b}"
             if binary_str[0] == "0":
@@ -25,3 +27,13 @@ def validUTF8(data):
             if character_length == 0:
                 started = 0
     return True
+
+if __name__ == "__main__":     
+    data = [65]
+    print(validUTF8(data))
+
+    data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
+    print(validUTF8(data))
+
+    data = [229, 65, 127, 256]
+    print(validUTF8(data))
