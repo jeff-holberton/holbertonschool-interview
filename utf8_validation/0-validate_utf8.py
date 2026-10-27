@@ -18,6 +18,8 @@ def validUTF8(data):
             while binary_str[index] == "1":
                 character_length += 1
                 index += 1
+            if character_length > 3:
+                return False
             started = 1
         else:
             if n > 255 or n < 0:
@@ -38,5 +40,5 @@ if __name__ == "__main__":
     data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
     print(validUTF8(data))
 
-    data = [345, 467]
+    data = [250, 145, 145, 145, 145]
     print(validUTF8(data))
