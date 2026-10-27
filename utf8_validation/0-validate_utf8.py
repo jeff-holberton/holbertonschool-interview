@@ -11,7 +11,7 @@ def validUTF8(data):
         binary_str = f"{eight_bits:08b}"
         if started == 0:
             if binary_str[0] == "0":
-                return True
+                continue
             elif binary_str[0] == "1" and binary_str[1] == "0":
                 return False
             index = 1
@@ -38,5 +38,5 @@ if __name__ == "__main__":
     data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
     print(validUTF8(data))
 
-    data = [467, 133, 108]
+    data = [345, 467]
     print(validUTF8(data))
