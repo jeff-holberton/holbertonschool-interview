@@ -32,13 +32,3 @@ def validUTF8(data):
     if character_length != 0:
         return False
     return True
-
-if __name__ == "__main__":     
-    data = [65]
-    print(validUTF8(data))
-
-    data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 33]
-    print(validUTF8(data))
-
-    data = [250, 145, 145, 145, 145]
-    print(validUTF8(data))
