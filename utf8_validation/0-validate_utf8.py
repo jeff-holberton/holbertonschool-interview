@@ -9,7 +9,6 @@ def validUTF8(data):
     for n in data:
         eight_bits = n % 256
         binary_str = f"{eight_bits:08b}"
-        print (binary_str)
         if started == 0:
             if binary_str[0] == "0":
                 return True
