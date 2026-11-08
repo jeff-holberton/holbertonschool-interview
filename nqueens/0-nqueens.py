@@ -35,20 +35,9 @@ def can_attack(current_list, current_square):
 
 def nqueens(N):
     """solves the nqueens problem"""
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        return 1
-    if isinstance(N, int) is False:
-        print("N must be a number")
-        return 1
     if N < 4:
         print("N must be at least 4")
         return 1
-
-    for _ in range(N):
-        for _ in range(N):
-            print("[]", end="")
-        print()
 
     solutions = []
     current = []
@@ -64,4 +53,16 @@ def nqueens(N):
                 current.pop()
 
     place(0)
-    return solutions
+    for row in solutions:
+        print(row)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+    else:
+        try:
+            N = int(sys.argv[1])
+            nqueens(N)
+        except ValueError:
+            print("N must be a number")
