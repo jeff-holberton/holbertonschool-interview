@@ -1,18 +1,17 @@
 #!/usr/bin/python3
 """Making change"""
-    
+
+
+
 
 def makeChange(coins, total):
     if total <= 0:
         return 0
-    if len(coins) == 0:
-        return -1
-    maximum = max(coins)
-    division = total // maximum
-    if division > 0:
-        total = total - (division * maximum)
-    coins.remove(maximum)
-    recursive = makeChange(coins, total)
-    if recursive < 0:
-        return - 1
-    return division + recursive
+    dp = [total + 1] * (total + 1)
+    dp[0] = 0
+
+    for i in range(total + 1):
+        for coin in coins:
+            if i - coin >= 0:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+    return dp[total] if dp[total] != (total + 1) else -1
